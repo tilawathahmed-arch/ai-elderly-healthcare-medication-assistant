@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}AI Assistant · ElderCare AI{% endblock %}
+{% block content %}
+<section class="page-title"><div><p class="eyebrow">NATURAL LANGUAGE PROCESSING</p><h1>AI healthcare assistant</h1><p>Ask general support questions in simple language. The assistant is not a diagnostic tool.</p></div></section>
+<section class="chat-layout">
+  <div class="card chat-card">
+    <div class="chat-suggestions"><button type="button" data-fill="When should I take my medicine?">Medication reminder</button><button type="button" data-fill="I feel dizzy">I feel dizzy</button><button type="button" data-fill="How can I sleep better?">Sleep help</button><button type="button" data-fill="I feel lonely">Loneliness support</button></div>
+    {% if result %}
+      <div class="message user"><strong>You</strong><p>{{ message }}</p></div>
+      <div class="message assistant"><strong>AI Assistant</strong><p>{{ result.response }}</p><span class="confidence">Detected intent: {{ result.intent }} · Confidence: {{ result.confidence }}</span><button type="button" class="btn tiny voice-btn" data-voice="en" data-text="{{ result.response }}">🔊 Read aloud</button></div>
+    {% else %}<div class="message assistant"><strong>AI Assistant</strong><p>Hello! I can help with medication reminders, wellness tracking, sleep, pain, hydration, and general support.</p></div>{% endif %}
+    <form method="post" class="chat-form"><input id="chatMessage" name="message" value="{{ message }}" placeholder="Type your question..." required><button class="btn primary" type="submit">Send</button></form>
+  </div>
+  <aside class="card safety-card"><h3>Safety guidance</h3><p>For severe or sudden symptoms, contact local emergency services or a healthcare professional.</p><p>The chatbot does not prescribe medication, diagnose disease, or replace clinical advice.</p><p class="muted">The model is a local intent classifier trained on the sample dataset in <code>data/intents.json</code>.</p></aside>
+</section>
+{% endblock %}

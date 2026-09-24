@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Analytics · ElderCare AI{% endblock %}
+{% block content %}
+<section class="page-title"><div><p class="eyebrow">HEALTH INSIGHTS</p><h1>Analytics dashboard</h1><p>Simple trends calculated from the medication and wellness data recorded in this demo.</p></div></section>
+<section class="stats-grid">
+  <div class="stat-card"><span>Adherence</span><strong>{{ adherence }}%</strong><small>Taken vs. missed logged doses</small></div>
+  <div class="stat-card"><span>Average mood</span><strong>{{ summary.avg_mood }}/5</strong><small>Demo wellness scale</small></div>
+  <div class="stat-card"><span>Average sleep</span><strong>{{ summary.avg_sleep }} h</strong><small>Across wellness records</small></div>
+  <div class="stat-card"><span>Attention indicator</span><strong>{{ summary.risk }}</strong><small>Heuristic only, not a clinical risk score</small></div>
+</section>
+<section class="analytics-grid">
+  <div class="card"><h2>Wellness averages</h2>
+    <div class="meter"><div><span>Mood</span><strong>{{ summary.avg_mood }}/5</strong></div><progress max="5" value="{{ summary.avg_mood }}"></progress></div>
+    <div class="meter"><div><span>Sleep</span><strong>{{ summary.avg_sleep }} h</strong></div><progress max="10" value="{{ summary.avg_sleep }}"></progress></div>
+    <div class="meter"><div><span>Pain</span><strong>{{ summary.avg_pain }}/10</strong></div><progress max="10" value="{{ summary.avg_pain }}"></progress></div>
+    <div class="meter"><div><span>Appetite</span><strong>{{ summary.avg_appetite }}/5</strong></div><progress max="5" value="{{ summary.avg_appetite }}"></progress></div>
+  </div>
+  <div class="card"><h2>Recent dose logs</h2>{% for log in recent_logs[:10] %}<div class="mini-row"><span>{{ log.medication.name }} · {{ log.scheduled_for.strftime('%d %b %I:%M %p') }}</span><span class="status {{ log.status }}">{{ log.status|title }}</span></div>{% else %}<div class="empty">No medication logs.</div>{% endfor %}</div>
+</section>
+<section class="card"><h2>Recent wellness</h2><div class="mini-table">{% for log in recent_wellness %}<div class="mini-row"><span>{{ log.log_date }}</span><span>Mood {{ log.mood }}/5</span><span>Sleep {{ log.sleep_hours }}h</span><span>Pain {{ log.pain }}/10</span><span>Appetite {{ log.appetite }}/5</span></div>{% else %}<div class="empty">No wellness logs.</div>{% endfor %}</div></section>
+{% endblock %}

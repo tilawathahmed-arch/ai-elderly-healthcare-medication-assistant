@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Dashboard · ElderCare AI{% endblock %}
+{% block content %}
+<section class="hero">
+  <div>
+    <p class="eyebrow">AI-POWERED ELDERLY CARE</p>
+    <h1>Simple care support, built for everyday use.</h1>
+    <p class="hero-sub">Medication schedules, voice reminders, wellness tracking, analytics, and a safe NLP assistant in one accessible web app.</p>
+  </div>
+  <div class="hero-actions">
+    <a class="btn primary" href="{{ url_for('main.add_medication') }}">+ Add Medication</a>
+    <a class="btn secondary" href="{{ url_for('main.wellness') }}">Log Wellness</a>
+  </div>
+</section>
+
+<section class="stats-grid">
+  <div class="stat-card"><span>Medication adherence</span><strong>{{ adherence }}%</strong><small>Taken vs. missed logged doses</small></div>
+  <div class="stat-card"><span>Wellness attention</span><strong>{{ wellness.risk }}</strong><small>Demo heuristic, not a diagnosis</small></div>
+  <div class="stat-card"><span>Average sleep</span><strong>{{ wellness.avg_sleep }} h</strong><small>Across recorded entries</small></div>
+  <div class="stat-card"><span>Average pain</span><strong>{{ wellness.avg_pain }}/10</strong><small>Across recorded entries</small></div>
+</section>
+
+<section class="section-head"><div><p class="eyebrow">TODAY</p><h2>Medication reminders</h2></div><a class="text-link" href="{{ url_for('main.medications') }}">Manage all →</a></section>
+<section class="card table-wrap">
+  {% if logs %}
+  <table>
+    <thead><tr><th>Time</th><th>Medicine</th><th>Dose</th><th>Status</th><th>Actions</th></tr></thead>
+    <tbody>
+    {% for log in logs %}
+      <tr>
+        <td>{{ log.scheduled_for.strftime('%I:%M %p') }}</td>
+        <td><strong>{{ log.medication.name }}</strong><br><span class="muted">{{ log.medication.instructions }}</span></td>
+        <td>{{ log.medication.dosage }}</td>
+        <td><span class="status {{ log.status }}">{{ log.status|title }}</span></td>
+        <td class="actions">
+          <form method="post" action="{{ url_for('main.reminder_action', log_id=log.id, action='taken') }}"><button class="btn tiny success" type="submit">Taken</button></form>
+          <form method="post" action="{{ url_for('main.reminder_action', log_id=log.id, action='snooze') }}"><button class="btn tiny" type="submit">Snooze</button></form>
+          <form method="post" action="{{ url_for('main.reminder_action', log_id=log.id, action='missed') }}"><button class="btn tiny danger" type="submit">Missed</button></form>
+          <button class="btn tiny voice-btn" type="button" data-voice="{{ log.medication.language }}" data-text="{{ log.medication.name }} {{ log.medication.dosage }} is scheduled for {{ log.scheduled_for.strftime('%I:%M %p') }}. {{ log.medication.instructions }}">🔊 Voice</button>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <div class="empty"><strong>No reminders yet.</strong><br>Add a medication and the app will create today's reminder automatically.</div>
+  {% endif %}
+</section>
+
+<section class="quick-grid">
+  <a class="quick-card" href="{{ url_for('main.chat') }}"><span class="icon">🤖</span><div><h3>Ask the AI assistant</h3><p>Try medication, sleep, hydration, pain, and general-support questions.</p></div></a>
+  <a class="quick-card" href="{{ url_for('main.wellness') }}"><span class="icon">♥</span><div><h3>Track wellness</h3><p>Record mood, sleep, pain, appetite, and optional blood pressure.</p></div></a>
+  <a class="quick-card" href="{{ url_for('main.analytics') }}"><span class="icon">▥</span><div><h3>View analytics</h3><p>Review adherence, wellness averages, and the demo attention indicator.</p></div></a>
+</section>
+
+<section class="notice"><strong>Emergency reminder:</strong> For severe or sudden symptoms, use local emergency services or contact a qualified healthcare professional. This application is not an emergency service.</section>
+{% endblock %}

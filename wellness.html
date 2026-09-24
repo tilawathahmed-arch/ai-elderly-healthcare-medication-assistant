@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Wellness · ElderCare AI{% endblock %}
+{% block content %}
+<section class="page-title"><div><p class="eyebrow">WELLNESS TRACKING</p><h1>How are you feeling?</h1><p>Record daily wellness signals to build a simple personal history.</p></div></section>
+<section class="form-card">
+<form method="post" class="form-grid">
+  <label>Date<input type="date" name="log_date" value="{{ today }}" required></label>
+  <label>Mood (1–5)<input type="number" name="mood" min="1" max="5" value="4" required></label>
+  <label>Sleep hours<input type="number" name="sleep_hours" min="0" max="24" step="0.5" value="7" required></label>
+  <label>Pain (0–10)<input type="number" name="pain" min="0" max="10" value="2" required></label>
+  <label>Appetite (1–5)<input type="number" name="appetite" min="1" max="5" value="4" required></label>
+  <label>Systolic (optional)<input type="number" name="systolic" min="50" max="250" placeholder="120"></label>
+  <label>Diastolic (optional)<input type="number" name="diastolic" min="30" max="150" placeholder="80"></label>
+  <label class="wide">Notes<textarea name="notes" rows="3" placeholder="Anything you want to remember about today..."></textarea></label>
+  <div class="wide form-actions"><button class="btn primary" type="submit">Save Wellness Entry</button></div>
+</form>
+</section>
+
+<section class="section-head"><div><p class="eyebrow">RECENT LOGS</p><h2>Wellness history</h2></div></section>
+<section class="card table-wrap"><table><thead><tr><th>Date</th><th>Mood</th><th>Sleep</th><th>Pain</th><th>Appetite</th><th>BP</th><th>Notes</th></tr></thead>
+<tbody>{% for log in logs %}<tr><td>{{ log.log_date }}</td><td>{{ log.mood }}/5</td><td>{{ log.sleep_hours }} h</td><td>{{ log.pain }}/10</td><td>{{ log.appetite }}/5</td><td>{% if log.systolic %}{{ log.systolic }}/{{ log.diastolic }}{% else %}—{% endif %}</td><td>{{ log.notes or '—' }}</td></tr>{% else %}<tr><td colspan="7" class="empty">No wellness entries yet.</td></tr>{% endfor %}</tbody></table></section>
+{% endblock %}

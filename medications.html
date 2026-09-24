@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Medications · ElderCare AI{% endblock %}
+{% block content %}
+<section class="page-title"><div><p class="eyebrow">MEDICATION MANAGEMENT</p><h1>Medication schedule</h1><p>Create clear reminders with snooze, adherence logging, and escalation handling.</p></div><a class="btn primary" href="{{ url_for('main.add_medication') }}">+ Add Medication</a></section>
+
+<section class="card table-wrap">
+<table>
+<thead><tr><th>Medicine</th><th>Dosage</th><th>Time</th><th>Instructions</th><th>Language</th><th>Escalation</th><th>Actions</th></tr></thead>
+<tbody>
+{% for med in medications %}
+<tr>
+  <td><strong>{{ med.name }}</strong><br><span class="muted">{{ 'Active' if med.active else 'Inactive' }}</span></td>
+  <td>{{ med.dosage }}</td><td>{{ med.schedule_time }}</td><td>{{ med.instructions or '—' }}</td><td>{{ med.language|upper }}</td><td>{{ med.escalation_minutes }} min</td>
+  <td class="actions">
+    <a class="btn tiny" href="{{ url_for('main.edit_medication', med_id=med.id) }}">Edit</a>
+    <form method="post" action="{{ url_for('main.toggle_medication', med_id=med.id) }}"><button class="btn tiny" type="submit">{{ 'Disable' if med.active else 'Enable' }}</button></form>
+    <form method="post" action="{{ url_for('main.delete_medication', med_id=med.id) }}" onsubmit="return confirm('Remove this medication and its logs?');"><button class="btn tiny danger" type="submit">Delete</button></form>
+  </td>
+</tr>
+{% else %}<tr><td colspan="7" class="empty">No medications added.</td></tr>{% endfor %}
+</tbody>
+</table>
+</section>
+
+<section class="section-head"><div><p class="eyebrow">TODAY</p><h2>Reminder actions</h2></div></section>
+<section class="card table-wrap">
+<table>
+<thead><tr><th>Time</th><th>Medicine</th><th>Status</th><th>Snoozes</th><th>Action</th></tr></thead>
+<tbody>
+{% for log in logs %}
+<tr>
+  <td>{{ log.scheduled_for.strftime('%I:%M %p') }}</td><td>{{ log.medication.name }} <span class="muted">{{ log.medication.dosage }}</span></td>
+  <td><span class="status {{ log.status }}">{{ log.status|title }}</span></td><td>{{ log.snooze_count }}</td>
+  <td class="actions"><form method="post" action="{{ url_for('main.reminder_action', log_id=log.id, action='taken') }}"><button class="btn tiny success" type="submit">Taken</button></form><form method="post" action="{{ url_for('main.reminder_action', log_id=log.id, action='snooze') }}"><button class="btn tiny" type="submit">Snooze 10m</button></form><form method="post" action="{{ url_for('main.reminder_action', log_id=log.id, action='missed') }}"><button class="btn tiny danger" type="submit">Missed</button></form></td>
+</tr>
+{% else %}<tr><td colspan="5" class="empty">No reminder logs for today.</td></tr>{% endfor %}
+</tbody>
+</table>
+</section>
+{% endblock %}

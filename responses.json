@@ -1,0 +1,32 @@
+{
+  "greeting": [
+    "Hello! I am your healthcare assistant. How can I help you today?"
+  ],
+  "medicine": [
+    "Please check the Medications page for your scheduled doses. If you miss a dose, follow the instructions given by your doctor or pharmacist rather than taking an extra dose."
+  ],
+  "dizziness": [
+    "Sit or lie down somewhere safe and avoid walking until the feeling improves. If dizziness is severe, sudden, recurrent, or accompanied by chest pain, fainting, weakness, or trouble speaking, seek urgent medical care."
+  ],
+  "sleep": [
+    "Keep a regular sleep schedule, reduce caffeine late in the day, and keep the bedroom comfortable and quiet. Persistent sleep problems should be discussed with a healthcare professional."
+  ],
+  "pain": [
+    "Please note the pain level in the Wellness page. Severe, sudden, or worsening pain needs medical evaluation, especially when paired with other concerning symptoms."
+  ],
+  "lonely": [
+    "You do not have to handle loneliness alone. Consider calling a trusted family member or friend, spending time with someone you trust, or speaking with a healthcare professional if loneliness is persistent."
+  ],
+  "emergency": [
+    "This may be an emergency. Contact your local emergency service immediately or ask someone nearby for help. Do not rely on this chatbot for emergency care."
+  ],
+  "hydration": [
+    "Drink fluids regularly unless a clinician has given you a fluid restriction. People with heart or kidney conditions may have different fluid needs, so follow their clinician's advice."
+  ],
+  "diet": [
+    "Aim for a balanced eating pattern with vegetables or fruit, protein foods, whole grains, and enough fluids, while following any clinician-prescribed diet. A dietitian can provide personalized advice."
+  ],
+  "thanks": [
+    "You're welcome. Take care and remember to follow your healthcare professional's advice."
+  ]
+}

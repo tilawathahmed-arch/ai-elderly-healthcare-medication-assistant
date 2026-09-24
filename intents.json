@@ -1,0 +1,148 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "hello",
+        "hi",
+        "good morning",
+        "good evening",
+        "can you help me",
+        "hello assistant",
+        "namaste"
+      ],
+      "responses": [
+        "Hello! I am your healthcare assistant. How can I help you today?"
+      ]
+    },
+    {
+      "tag": "medicine",
+      "patterns": [
+        "when should I take my medicine",
+        "medicine reminder",
+        "what medicine do I take",
+        "show my medication",
+        "I forgot my tablet",
+        "medicine schedule",
+        "what is my dose",
+        "remind me about medicine"
+      ],
+      "responses": [
+        "Please check the Medications page for your scheduled doses. If you miss a dose, follow the instructions given by your doctor or pharmacist rather than taking an extra dose."
+      ]
+    },
+    {
+      "tag": "dizziness",
+      "patterns": [
+        "I feel dizzy",
+        "I am feeling dizzy",
+        "my head is spinning",
+        "feeling light headed",
+        "I feel lightheaded",
+        "dizzy today"
+      ],
+      "responses": [
+        "Sit or lie down somewhere safe and avoid walking until the feeling improves. If dizziness is severe, sudden, recurrent, or accompanied by chest pain, fainting, weakness, or trouble speaking, seek urgent medical care."
+      ]
+    },
+    {
+      "tag": "sleep",
+      "patterns": [
+        "I cannot sleep",
+        "how can I sleep better",
+        "sleep problem",
+        "I am not sleeping well",
+        "trouble sleeping",
+        "wake up at night"
+      ],
+      "responses": [
+        "Keep a regular sleep schedule, reduce caffeine late in the day, and keep the bedroom comfortable and quiet. Persistent sleep problems should be discussed with a healthcare professional."
+      ]
+    },
+    {
+      "tag": "pain",
+      "patterns": [
+        "I have pain",
+        "my body hurts",
+        "pain is high",
+        "I am hurting",
+        "I have severe pain",
+        "my knee hurts",
+        "body pain"
+      ],
+      "responses": [
+        "Please note the pain level in the Wellness page. Severe, sudden, or worsening pain needs medical evaluation, especially when paired with other concerning symptoms."
+      ]
+    },
+    {
+      "tag": "lonely",
+      "patterns": [
+        "I feel lonely",
+        "I am alone",
+        "feeling sad and lonely",
+        "nobody is here",
+        "I feel isolated",
+        "I need someone to talk to"
+      ],
+      "responses": [
+        "You do not have to handle loneliness alone. Consider calling a trusted family member or friend, spending time with someone you trust, or speaking with a healthcare professional if loneliness is persistent."
+      ]
+    },
+    {
+      "tag": "emergency",
+      "patterns": [
+        "I cannot breathe",
+        "severe chest pain",
+        "I am unconscious",
+        "emergency",
+        "I am fainting",
+        "difficulty breathing",
+        "heart emergency"
+      ],
+      "responses": [
+        "This may be an emergency. Contact your local emergency service immediately or ask someone nearby for help. Do not rely on this chatbot for emergency care."
+      ]
+    },
+    {
+      "tag": "hydration",
+      "patterns": [
+        "how much water should I drink",
+        "I am thirsty",
+        "water reminder",
+        "how to stay hydrated",
+        "I need water",
+        "hydration"
+      ],
+      "responses": [
+        "Drink fluids regularly unless a clinician has given you a fluid restriction. People with heart or kidney conditions may have different fluid needs, so follow their clinician's advice."
+      ]
+    },
+    {
+      "tag": "diet",
+      "patterns": [
+        "what should I eat",
+        "healthy food for elderly",
+        "healthy diet",
+        "what food is good",
+        "meal advice",
+        "nutrition tips"
+      ],
+      "responses": [
+        "Aim for a balanced eating pattern with vegetables or fruit, protein foods, whole grains, and enough fluids, while following any clinician-prescribed diet. A dietitian can provide personalized advice."
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "thank you",
+        "thanks",
+        "that helps",
+        "goodbye",
+        "bye"
+      ],
+      "responses": [
+        "You're welcome. Take care and remember to follow your healthcare professional's advice."
+      ]
+    }
+  ]
+}

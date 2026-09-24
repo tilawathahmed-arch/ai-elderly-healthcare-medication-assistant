@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Edit' if medication else 'Add' }} Medication · ElderCare AI{% endblock %}
+{% block content %}
+<section class="page-title"><div><p class="eyebrow">MEDICATION MANAGEMENT</p><h1>{{ 'Edit medication' if medication else 'Add medication' }}</h1><p>Enter the schedule exactly as prescribed by the clinician or pharmacist.</p></div></section>
+<section class="form-card">
+<form method="post" class="form-grid">
+  <label>Medicine name<input name="name" value="{{ medication.name if medication else '' }}" required placeholder="e.g. Amlodipine"></label>
+  <label>Dosage<input name="dosage" value="{{ medication.dosage if medication else '' }}" required placeholder="e.g. 5 mg"></label>
+  <label>Schedule time<input type="time" name="schedule_time" value="{{ medication.schedule_time if medication else '' }}" required></label>
+  <label>Reminder language<select name="language">
+    {% set current_lang = medication.language if medication else 'en' %}
+    <option value="en" {{ 'selected' if current_lang == 'en' }}>English</option>
+    <option value="hi" {{ 'selected' if current_lang == 'hi' }}>Hindi</option>
+    <option value="te" {{ 'selected' if current_lang == 'te' }}>Telugu</option>
+  </select></label>
+  <label>Escalation after (minutes)<input type="number" name="escalation_minutes" value="{{ medication.escalation_minutes if medication else 30 }}" min="5" max="240"></label>
+  <label class="wide">Instructions<textarea name="instructions" rows="3" placeholder="e.g. Take after breakfast">{{ medication.instructions if medication else '' }}</textarea></label>
+  <div class="wide form-actions"><a class="btn secondary" href="{{ url_for('main.medications') }}">Cancel</a><button class="btn primary" type="submit">{{ 'Update Medication' if medication else 'Save Medication' }}</button></div>
+</form>
+</section>
+<div class="note">This reminder system is for project demonstration. Follow the prescribed plan from the patient's healthcare professional.</div>
+{% endblock %}
