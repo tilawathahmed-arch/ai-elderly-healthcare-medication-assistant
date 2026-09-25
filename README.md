@@ -217,28 +217,4 @@ git push -u origin main
 
 `AI-powered elderly healthcare assistance system with medication reminders, voice alerts, wellness tracking, analytics, and an NLP chatbot using Flask and machine learning.`
 
-## 🎓 Viva / Presentation Points
-
-You can explain the project in these modules:
-
-1. Problem statement and motivation
-2. System architecture
-3. Medication scheduling
-4. Adaptive reminder and escalation logic
-5. Voice assistance
-6. NLP chatbot and ML pipeline
-7. Wellness tracking
-8. Analytics and adherence calculation
-9. Limitations and future scope
-
-## 🔮 Future Enhancements
-
-- Caregiver and family accounts
-- SMS / WhatsApp / email alerts
-- Mobile application
-- Wearable health-device integration
-- Clinician-approved medication plans
-- Role-based authentication and audit logs
-- Cloud database and deployment
-- RAG chatbot with a vetted medical knowledge source
 
