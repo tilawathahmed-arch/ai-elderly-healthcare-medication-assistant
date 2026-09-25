@@ -196,25 +196,8 @@ A transparent demo heuristic adds attention points for low average sleep, higher
 
 Copy `.env.example` to `.env` and set a stronger secret key for development deployments. For production, also place the app behind a proper WSGI server and add authentication, authorization, HTTPS, database backups, audit logs, and privacy controls.
 
-## 🧑‍💻 GitHub upload
 
-Create a new GitHub repository and run:
 
-```bash
-git init
-git add .
-git commit -m "Initial commit: ElderCare AI"
-git branch -M main
-git remote add origin YOUR_GITHUB_REPOSITORY_URL
-git push -u origin main
-```
 
-### Suggested GitHub repository name
-
-`ai-elderly-healthcare-medication-assistant`
-
-### Suggested repository description
-
-`AI-powered elderly healthcare assistance system with medication reminders, voice alerts, wellness tracking, analytics, and an NLP chatbot using Flask and machine learning.`
 
 
